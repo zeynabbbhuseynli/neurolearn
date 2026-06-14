@@ -94,10 +94,7 @@ async function callXAI(topic, systemPrompt) {
     },
     body: JSON.stringify({
       model: window.APP_CONFIG.XAI_MODEL,
-      temperature: 0.4,
-      max_tokens: 900,
-      response_format: { type: 'json_object' },
-      messages: [
+      input: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: `Explain this STEM topic: ${topic}` }
       ]
@@ -111,7 +108,7 @@ async function callXAI(topic, systemPrompt) {
   }
 
   const apiData = await response.json();
-  const rawText = apiData.choices?.[0]?.message?.content;
+  const rawText = apiData.output?.[0]?.content?.[0]?.text;
 
   if (!rawText) throw new Error('xAI returned an empty response.');
 
