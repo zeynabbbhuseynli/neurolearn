@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NeuroLearn — AI STEM explanations adapted for Dyslexia, ADHD, and Autism learning styles." />
+  <title>NeuroLearn — STEM for Every Brain</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-icon">🧠</div>
+        <span>NeuroLearn</span>
+      </div>
+      <p>STEM explained the way your brain works</p>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <section class="hero-text">
+      <div class="pill">DSH Hacks V1 · AI × STEM Education</div>
+      <h1>STEM for <span>every</span> brain.</h1>
+      <p>Choose a learner profile, enter any STEM topic, and get a Grok-powered explanation plus a quick quiz.</p>
+    </section>
+
+    <section class="atom" aria-hidden="true">
+      <div class="orbit orbit-one"><div class="electron"></div></div>
+      <div class="orbit orbit-two"><div class="electron"></div></div>
+      <div class="orbit orbit-three"><div class="electron"></div></div>
+      <div class="nucleus"></div>
+    </section>
+  </header>
+
+  <main class="container">
+    <section class="step">
+      <div class="step-title">
+        <span>1</span>
+        <div>
+          <h2>Choose your learner profile</h2>
+          <p>Pick the style that fits how you learn best.</p>
+        </div>
+      </div>
+
+      <div class="cards" id="profileCards">
+        <button class="profile-card" data-profile="dyslexia">
+          <div class="icon teal">📖</div>
+          <h3>Dyslexia-Friendly</h3>
+          <p>Short sentences, bold keywords, and extra spacing.</p>
+        </button>
+
+        <button class="profile-card" data-profile="adhd">
+          <div class="icon amber">⚡</div>
+          <h3>ADHD-Friendly</h3>
+          <p>Key point first, numbered chunks, and fast focus.</p>
+        </button>
+
+        <button class="profile-card" data-profile="autism">
+          <div class="icon purple">🔬</div>
+          <h3>Autism-Friendly</h3>
+          <p>Literal, precise structure: IS, DOES, WHY.</p>
+        </button>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-title">
+        <span>2</span>
+        <div>
+          <h2>Enter a STEM topic</h2>
+          <p>Type your own topic or try an example.</p>
+        </div>
+      </div>
+
+      <div class="chips">
+        <button data-topic="What is photosynthesis?">🌿 Photosynthesis</button>
+        <button data-topic="Explain Newton's third law">🍎 Newton's 3rd Law</button>
+        <button data-topic="How do vaccines work?">💉 Vaccines</button>
+        <button data-topic="What is the Pythagorean theorem?">📐 Pythagorean theorem</button>
+      </div>
+
+      <textarea id="topicInput" rows="4" placeholder="Type a STEM topic or question..."></textarea>
+
+      <div class="actions">
+        <p id="statusText">Select a profile and enter a topic to continue.</p>
+        <button id="generateBtn" disabled>Explain it to me →</button>
+      </div>
+    </section>
+
+    <section id="loading" class="panel hidden" aria-live="polite">
+      <div class="loader">
+        <span></span><span></span><span></span>
+      </div>
+      <p>Grok is adapting your explanation...</p>
+    </section>
+
+    <section id="errorBox" class="error hidden" role="alert"></section>
+
+    <section id="result" class="result hidden" aria-live="polite">
+      <div class="result-header">
+        <h2>Your adapted explanation</h2>
+        <span id="modeBadge"></span>
+      </div>
+      <article id="explanation"></article>
+    </section>
+
+    <section id="quiz" class="quiz hidden" aria-live="polite">
+      <h2>🧠 Quick comprehension check</h2>
+      <p id="quizQuestion"></p>
+      <div id="quizOptions" class="quiz-options"></div>
+      <div id="quizFeedback" class="feedback hidden"></div>
+    </section>
+  </main>
+
+  <footer>
+    Built for <strong>DSH Hacks V1</strong> · Powered by <strong>xAI Grok</strong>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="prompts.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
