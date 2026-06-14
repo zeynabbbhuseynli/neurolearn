@@ -5,7 +5,7 @@ export default async function handler(req, res) {
 
   const contents = messages
     .filter(m => m.role !== 'system')
-    .map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] }));
+    .map(m => ({ role: 'user', parts: [{ text: m.content }] }));
 
   const systemMsg = messages.find(m => m.role === 'system')?.content || '';
 
@@ -14,7 +14,10 @@ export default async function handler(req, res) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       system_instruction: { parts: [{ text: systemMsg }] },
-      contents
+      contents,
+      generationConfig: {
+        responseMimeType: 'application/json'
+      }
     })
   });
 
