@@ -108,7 +108,9 @@ async function callXAI(topic, systemPrompt) {
   }
 
   const apiData = await response.json();
+  console.log('full api response:', JSON.stringify(apiData));
   const rawText = apiData.output?.[0]?.content?.[0]?.text;
+  console.log('raw text:', rawText);
 
   if (!rawText) throw new Error('xAI returned an empty response.');
 
