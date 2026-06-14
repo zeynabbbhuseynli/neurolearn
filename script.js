@@ -120,13 +120,20 @@ function parseJSON(rawText) {
     .replace(/^```json\s*/i, '')
     .replace(/^```\s*/i, '')
     .replace(/```$/i, '')
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
     .trim();
 
   try {
     return JSON.parse(cleaned);
   } catch {
     const match = cleaned.match(/\{[\s\S]*\}/);
-    if (match) return JSON.parse(match[0]);
+    if (match) {
+      try {
+        return JSON.parse(match[0]);
+      } catch {
+        throw new Error('The AI response was not valid JSON. Try again.');
+      }
+    }
     throw new Error('The AI response was not valid JSON. Try again.');
   }
 }
