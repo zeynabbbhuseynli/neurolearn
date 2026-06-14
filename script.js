@@ -76,8 +76,6 @@ async function generateExplanation() {
   els.generateBtn.disabled = true;
 
   try {
-    validateConfig();
-
     const data = await callXAI(topic, profile.systemPrompt);
     renderResult(data, profile);
   } catch (error) {
@@ -88,24 +86,11 @@ async function generateExplanation() {
   }
 }
 
-function validateConfig() {
-  const key = window.APP_CONFIG?.XAI_API_KEY;
-
-  if (!key || key === 'PASTE_YOUR_XAI_KEY_HERE') {
-    throw new Error('Add your xAI API key in config.js first.');
-  }
-
-  if (!key.startsWith('xai-')) {
-    throw new Error('This version needs an xAI key that starts with xai-.');
-  }
-}
-
 async function callXAI(topic, systemPrompt) {
   const response = await fetch(window.APP_CONFIG.XAI_ENDPOINT, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${window.APP_CONFIG.XAI_API_KEY}`
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       model: window.APP_CONFIG.XAI_MODEL,
